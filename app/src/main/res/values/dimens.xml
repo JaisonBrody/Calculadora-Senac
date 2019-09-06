@@ -4,5 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="tamanho_texto_visor">50sp</dimen>
     <dimen name="tamanho_texto_botoes">30sp</dimen>
-
+    <dimen name="default_margin">2dp</dimen>
+    <dimen name="default_margin_duo">4dp</dimen>
 </resources>
