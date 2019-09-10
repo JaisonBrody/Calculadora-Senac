@@ -7,8 +7,8 @@ public enum Operacao {
 
     ADICAO(" + "),
     SUBTRACAO(" - "),
-    MULTIPLICACAO(" ร— "),
-    DIVISAO(" รท "),
+    MULTIPLICACAO(" x "),
+    DIVISAO(" ÷ "),
     PORCENTAGEM(" % ");
 
     private String texto = "";

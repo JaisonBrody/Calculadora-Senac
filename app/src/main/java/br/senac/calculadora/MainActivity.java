@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Bundle;
+
 
 import br.senac.calculadora.calculadora.Operacao;
-import br.senac.calculadora.calculadora.Operador;
+
 import br.senac.calculadora.calculadora.Calculadora;
 
 public class MainActivity extends Activity {
@@ -17,6 +17,8 @@ public class MainActivity extends Activity {
     private Calculadora calculadora = new Calculadora();
     private TextView visor;
     private TextView visorPrincipal;
+    private boolean virgu = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -27,12 +29,22 @@ public class MainActivity extends Activity {
     }
 
     private void atualizarVisor(){
-        if (this.calculadora != null) {
-            visor.setText(calculadora.getValorTexto());
-            visorPrincipal.setText(calculadora.getValorTextoPrincipal());
-        } else {
-            visor.setText("");
-            visorPrincipal.setText("0");
+        if(virgu==true) {
+            if (this.calculadora != null) {
+                visor.setText(calculadora.getValorTexto());
+                visorPrincipal.setText(calculadora.getValorTextoPrincipal());
+            } else {
+                visor.setText("");
+                visorPrincipal.setText("0");
+            }
+        }else if(virgu==false){
+            if (this.calculadora != null) {
+                visor.setText(calculadora.getValorTexto().replace(".",","));
+                visorPrincipal.setText(calculadora.getValorTextoPrincipal().replace(".",","));
+            } else {
+                visor.setText("");
+                visorPrincipal.setText("0");
+            }
         }
     }
 
@@ -143,6 +155,7 @@ public class MainActivity extends Activity {
     }
 
     public void handleButtonVirgula(View view){
+        virgu= true;
         setCaracter(',');
     }
 

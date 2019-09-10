@@ -1,17 +1,23 @@
 package br.senac.calculadora.calculadora;
 
+
+
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
+
 public class Operador implements Serializable {
     private double valor = 0;
+
+
     private String texto = "";
     private NumberFormat nf = NumberFormat.getNumberInstance();
 
     public void setCaracter(char caracter) throws ParseException {
         texto += caracter;
-        valor = nf.parse(texto).doubleValue();
+        valor = nf.parse(texto.replace(",",".")).doubleValue();
+
     }
 
     public String getValorTexto() {
