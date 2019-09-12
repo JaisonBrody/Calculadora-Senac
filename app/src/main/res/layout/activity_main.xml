@@ -54,11 +54,12 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
-            android:onClick="handleButtonDesfazer"
-
             android:adjustViewBounds="true"
+
+            android:onClick="handleButtonDesfazer"
             android:padding="24dp"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:src="@mipmap/delete" />
 
         <Button
             style="@style/botao"
@@ -213,7 +214,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
-            android:onClick="handleButtonVirgula"
+            android:onClick="handleButtonPonto"
             android:text="," />
 
         <Button

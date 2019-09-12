@@ -2,6 +2,7 @@ package br.senac.calculadora;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -14,10 +15,12 @@ import br.senac.calculadora.calculadora.Calculadora;
 
 public class MainActivity extends Activity {
 
+    //VARIAVEIS
     private Calculadora calculadora = new Calculadora();
     private TextView visor;
     private TextView visorPrincipal;
     private boolean virgu = false;
+    //VARIAVEIS
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -25,11 +28,12 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         this.visor = (TextView) findViewById(R.id.visor);
         this.visorPrincipal = (TextView) findViewById(R.id.visorPrincipal);
+
         atualizarVisor();
     }
 
+    //METODO PARA ATUALIZAR A TELA
     private void atualizarVisor(){
-        if(virgu==true) {
             if (this.calculadora != null) {
                 visor.setText(calculadora.getValorTexto());
                 visorPrincipal.setText(calculadora.getValorTextoPrincipal());
@@ -37,16 +41,9 @@ public class MainActivity extends Activity {
                 visor.setText("");
                 visorPrincipal.setText("0");
             }
-        }else if(virgu==false){
-            if (this.calculadora != null) {
-                visor.setText(calculadora.getValorTexto().replace(".",","));
-                visorPrincipal.setText(calculadora.getValorTextoPrincipal().replace(".",","));
-            } else {
-                visor.setText("");
-                visorPrincipal.setText("0");
-            }
-        }
     }
+
+
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState){
@@ -59,7 +56,7 @@ public class MainActivity extends Activity {
 
 
 
-
+    //METODO DO BOTÃO DELETE
     public void handleButtonDesfazer(View view){
         try {
             calculadora.removerUltimoCaracter();
@@ -70,7 +67,7 @@ public class MainActivity extends Activity {
         }
     }
 
-
+    //METODO PARA DEFINIR OS CARACTERES
     private void setCaracter(char caracter){
         try {
             calculadora.setCaracter(caracter);
@@ -81,17 +78,19 @@ public class MainActivity extends Activity {
         }
     }
 
-
+    //METODO PARA DEFINIR O CALCULO(OPERAÇÃO)
     private void setOperacao(Operacao operation){
         calculadora.setOperacao(operation);
         atualizarVisor();
     }
 
+    //METODO DO BOTÃO RESULTADO
     public void handleButtonResultado(View view){
         calculadora.calcular();
         atualizarVisor();
     }
 
+    //METODO PARA LIMPAR O VISOR
     public void handleButtonLimpar(View view){
         calculadora = new Calculadora();
         atualizarVisor();
@@ -100,7 +99,7 @@ public class MainActivity extends Activity {
 
 
 
-
+    //METODOS DOS BOTÕES
     public void handleButtonUm(View view){
         setCaracter('1');
     }
@@ -134,29 +133,30 @@ public class MainActivity extends Activity {
 
 
 
+    //METODO DOS BOTÕES ESPECIAIS(OPERAÇÕES)
     public void handleButtonSoma(View view){
         setOperacao(Operacao.ADICAO);
     }
-
     public void handleButtonSubtrai(View view){
         setOperacao(Operacao.SUBTRACAO);
     }
-
     public void handleButtonMultiplica(View view){
         setOperacao(Operacao.MULTIPLICACAO);
     }
-
     public void handleButtonDivide(View view){
         setOperacao(Operacao.DIVISAO);
     }
-
     public void handleButtonPorcentagem(View view){
         setOperacao(Operacao.PORCENTAGEM);
     }
 
+    //METODOS PARA VIRGULA
     public void handleButtonVirgula(View view){
         virgu= true;
-        setCaracter(',');
+        setCaracter('.');
     }
+    public void handleButtonPonto(View view){
 
+        setCaracter('.');
+    }
 }
